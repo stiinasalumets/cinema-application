@@ -8,10 +8,9 @@ import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name="Movie")
+@Table(name="Session")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -19,8 +18,8 @@ import java.util.List;
 @ToString
 public class Session {
 
-    public Session(String occupiedSeats, Date startTime, String language, Long movieId) {
-        this.occupiedSeats = occupiedSeats;
+    public Session(String availableSeats, Date startTime, String language, Long movieId) {
+        this.availableSeats = availableSeats;
         this.startTime = startTime;
         this.language = language;
         this.movieId = movieId;
@@ -32,5 +31,5 @@ public class Session {
     private Date startTime;
     private String language;
     private Long movieId;
-    private String occupiedSeats;
+    private String availableSeats;
 }
