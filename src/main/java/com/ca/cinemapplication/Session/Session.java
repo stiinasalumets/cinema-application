@@ -1,16 +1,20 @@
 package com.ca.cinemapplication.Session;
 
+import com.ca.cinemapplication.Seat.Seat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.relational.core.sql.In;
 
-import java.util.Date;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Entity
-@Table(name="Session")
+@Table(name = "Session")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -18,8 +22,7 @@ import java.util.Date;
 @ToString
 public class Session {
 
-    public Session(String availableSeats, Date startTime, String language, Long movieId) {
-        this.availableSeats = availableSeats;
+    public Session(Date startTime, String language, Long movieId) {
         this.startTime = startTime;
         this.language = language;
         this.movieId = movieId;
@@ -31,5 +34,4 @@ public class Session {
     private Date startTime;
     private String language;
     private Long movieId;
-    private String availableSeats;
 }

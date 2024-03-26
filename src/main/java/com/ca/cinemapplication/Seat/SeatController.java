@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/v1/RegionalBaseFeeController")
+@RequestMapping(path = "/api/v1/SeatController")
 public class SeatController {
 
     private final SeatService seatService;
