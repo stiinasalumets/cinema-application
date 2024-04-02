@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,5 +24,10 @@ public class SessionService {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public List<Session> getAllSessionsForMovie(Long movieId) {
+            List<Session> sessions = sessionRepository.findAllByMovieIdEqualsAndStartTimeAfter(movieId, new Date());
+            return sessions;
     }
 }

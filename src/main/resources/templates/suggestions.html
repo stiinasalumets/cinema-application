@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>ABC Cinemas</title>
-  <link rel="icon" href="logo.png" type="image/png">
   <style>
     html, body, .container-full-height {
       height: 100%;
@@ -15,8 +14,8 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="./index.html">
-    <img src="logo.png" width="50" height="50" alt="">
+  <a class="navbar-brand" th:href="@{index}">
+    <img th:src="@{logo.png}" width="50" height="50" alt="">
     ABC Cinemas
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -27,22 +26,55 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="./currentMovies.html">Current movies</a>
+        <a class="nav-link" th:href="@{currentMovies}">Current movies</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./suggestions.html">Suggestions for you</a>
+        <a class="nav-link" th:href="@{suggestions}">Suggestions for you</a>
       </li>
     </ul>
     <ul class="navbar-nav form-inline my-2 my-lg-0">
       <li class="nav-item">
-        <a class="nav-link" href="./myMovies.html">My movies</a>
+        <a class="nav-link" th:href="@{myMovies}">My movies</a>
       </li>
     </ul>
   </div>
 </nav>
 
-
-
+<div class="container mt-5">
+  <table id="movieTable" class="table table-borderless table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Minimum Age</th>
+      <th scope="col">Choose session</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movie, index : ${suggestions}">
+      <td th:text="${index.index + 1}"></td>
+      <td th:text="${movie.title}"></td>
+      <td th:text="${movie.genre}"></td>
+      <td th:text="${movie.formatMillisecondsToHHMM}"></td>
+      <td th:text="${movie.minimumAge}"></td>
+      <td>
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+            sessions
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#" th:each="movieSession : ${movie.sessions}"
+               th:text="${movieSession.startTime}" th:href="@{howManySeats}"></a>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

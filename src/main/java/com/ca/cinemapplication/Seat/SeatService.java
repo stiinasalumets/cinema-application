@@ -16,7 +16,7 @@ public class SeatService {
         this.seatRepository = seatRepository;
     }
 
-    public ResponseEntity<List<Seat>> getAllSessions() {
+    public ResponseEntity<List<Seat>> getAllSeats() {
         try {
             List<Seat> seats = seatRepository.findAll();
             return new ResponseEntity<>(seats, HttpStatus.OK);

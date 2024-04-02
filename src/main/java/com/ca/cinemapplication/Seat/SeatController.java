@@ -21,7 +21,7 @@ public class SeatController {
 
     @GetMapping("/getAllSessions")
     public ResponseEntity<List<Seat>> getAllSessions(){
-        return seatService.getAllSessions();
+        return seatService.getAllSeats();
     }
 
 
